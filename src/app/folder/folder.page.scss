@@ -1,0 +1,43 @@
+.tools-box {
+  .icon {
+    font-size: 25px;
+    color: #009688;
+    border: 1px solid #e2e2e2;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 11px;
+    padding-top: 10px;
+    color: #1b1b1b;
+  }
+}
+
+.tools-section {
+  background: #f9f9f9;
+}
+
+.recent-doc-title {
+  font-size: 16px;
+}
+
+.footer {
+  .title {
+    font-size: 12px;
+  }
+  .icon {
+    font-size: 20px;
+    height: 22px;
+    color: gray;
+  }
+  .active {
+    color: #009688;
+    .icon {
+      color: #009688;
+    }
+  }
+}

@@ -1,0 +1,157 @@
+<ion-header>
+    <ion-toolbar color="primary">
+       <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+        <ion-title>
+            Generate QRCode
+        </ion-title>
+        <div (click)="createQr()" class="ion-padding" slot="end" *ngIf="qrcodeVal">
+            Save
+        </div>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-no-padding" size="12">
+               <ion-item>
+                <ion-label>Select Type</ion-label>
+                <ion-select [(ngModel)]="qrcodeType" (ionChange)="chnageQrcoldetype()">
+                  <ion-select-option value="1">Free Text</ion-select-option>
+                  <ion-select-option value="2">URL</ion-select-option>
+                  <ion-select-option value="3">Contact</ion-select-option>
+                  <ion-select-option value="4">Phone</ion-select-option>
+                  <ion-select-option value="5">SMS</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '1'">
+                <ion-card>
+                  <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
+                    <ion-card-title style="color: #fff;">Text</ion-card-title>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Enter text to share here
+                        </ion-label>
+                        <ion-input type="text" [(ngModel)]="qrstring[qrcodeType]"></ion-input>
+                    </ion-item>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '2'">
+                <ion-card>
+                  <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
+                    <ion-card-title style="color: #fff;">URL</ion-card-title>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">
+                            URL
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType]"></ion-input>
+                    </ion-item>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '3'">
+                <ion-card>
+                  <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
+                    <ion-card-title style="color: #fff;">Contact</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">
+                            First Name
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Organization
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].org"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Email
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Phone
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].phone"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Cell
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].cell"></ion-input>
+                    </ion-item>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '4'">
+                <ion-card>
+                  <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
+                    <ion-card-title style="color: #fff;">Phone</ion-card-title>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Enter Phone Number
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType]"></ion-input>
+                    </ion-item>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '5'">
+                <ion-card>
+                  <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
+                    <ion-card-title style="color: #fff;">SMS</ion-card-title>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Phone Number
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].phone"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">
+                            Message
+                        </ion-label>
+                        <ion-input [(ngModel)]="qrstring[qrcodeType].message"></ion-input>
+                    </ion-item>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+            <ion-col class="ion-no-padding ion-text-center" size="12">
+                <ion-button (click)="loadQrCode()">
+                    Load QR
+                </ion-button>
+            </ion-col>
+
+            <ion-col class="ion-no-padding ion-text-center qr-img-block" size="12" *ngIf="qrcodeVal" style="margin-top: 50px;">
+                <ngx-qrcode 
+                  [value]="qrcodeVal"
+                  cssClass="aclass"
+                  id="qr-img"
+                  errorCorrectionLevel="L">
+                </ngx-qrcode>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

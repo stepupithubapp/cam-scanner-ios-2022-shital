@@ -1,0 +1,122 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Cam Scanner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="tools-section">
+    <ion-row class="ion-text-center">
+      <ion-col size="3" class="ion-margin-bottom" (click)="startScaning()">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="scan-circle-outline"></ion-icon>
+          </div>
+          <div class="title">Smart Scan</div>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-margin-bottom" (click)="navigatepage('/digital-sign')">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="pencil-outline"></ion-icon>
+          </div>
+          <div class="title">Digital Signature</div>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-margin-bottom" (click)="navigatepage('/pdf-maker')">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="image-outline"></ion-icon>
+          </div>
+          <div class="title">Import Picture</div>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-margin-bottom" (click)="navigatepage('/scan-identity-card')">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="card-outline"></ion-icon>
+          </div>
+          <div class="title">Scan ID Card</div>
+        </div>
+      </ion-col>
+      <!-- <ion-col size="3" class="ion-margin-bottom">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="text-outline"></ion-icon>
+          </div>
+          <div class="title">Image to Text</div>
+        </div>
+      </ion-col> -->
+      <ion-col size="3" class="ion-margin-bottom" (click)="navigatepage('/generate-qr-code')">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="qr-code"></ion-icon>
+          </div>
+          <div class="title">Create QR</div>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-margin-bottom" (click)="scanCode()">
+        <div class="tools-box">
+          <div class="icon">
+           <ion-icon name="qr-code-outline"></ion-icon>
+          </div>
+          <div class="title">QRCode</div>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-margin-bottom" (click)="scanCode()">
+        <div class="tools-box">
+          <div class="icon">
+            <ion-icon name="barcode-outline"></ion-icon>
+          </div>
+          <div class="title">BarCode</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="recent-doc">
+    <ion-row>
+      <ion-col size="12">
+        <div class="recent-doc-title">Recent Docs</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let item of [1,2,3]">
+            <ion-avatar slot="start">
+              <img src="assets/pdf.png" style="border-radius: 0;" />
+            </ion-avatar>
+            <ion-label>
+              <h2>Document one</h2>
+              <p>12/02/2022 05:06 PM</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="startScaning()">
+    <ion-fab-button color="secondary">
+      <ion-icon name="camera" color="light"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer class="footer">
+  <ion-row class="ion-text-center">
+    <ion-col size="4" class="active">
+      <div class="icon"><ion-icon name="home-outline"></ion-icon></div>
+      <div class="title">Home</div>
+    </ion-col>
+    <ion-col size="4" (click)="navigatepage('/documents')">
+      <div class="icon"><ion-icon name="file-tray"></ion-icon></div>
+      <div class="title">Docs</div>
+    </ion-col>
+    <ion-col size="4" (click)="navigatepage('/tools')">
+      <div class="icon"><ion-icon name="grid-outline"></ion-icon></div>
+      <div class="title">Tools</div>
+    </ion-col>
+  </ion-row>
+</ion-footer>

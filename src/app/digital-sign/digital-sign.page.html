@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Digital Sign</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="recent-doc">   
+    <ion-row>
+      <ion-col size="12">
+        <canvas class="signature-pad-canvas" #canvas width="300" height="200" style="touch-action: none;margin: 0 auto;"></canvas>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="recent-doc">   
+    <ion-row>
+      <ion-col size="6">
+        Sign above
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <a (click)="clearButton()" style="text-decoration: underline;">Clear</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>   
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="changeColorButton()">Change color</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="undoButton()">Undo</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="block" (click)="saveSign(1)">Save As PNG</ion-button>
+        <ion-button expand="block" (click)="saveSign(2)">Save As JPG</ion-button>
+        <ion-button expand="block" (click)="saveSign(3)">Save As SVG</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

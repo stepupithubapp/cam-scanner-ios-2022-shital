@@ -1,0 +1,7 @@
+{
+  "name": "camscanner-mb",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Documents</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="recent-doc">   
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let item of [1,2,3]">
+            <ion-avatar slot="start">
+              <img src="assets/pdf.png" style="border-radius: 0;" />
+            </ion-avatar>
+            <ion-label>
+              <h2>Document one</h2>
+              <p>12/02/2022 05:06 PM</p>
+            </ion-label> 
+            <ion-label class="ion-text-end">
+              <ion-icon name="ellipsis-horizontal-outline" (click)="presentActionSheet()"></ion-icon>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
