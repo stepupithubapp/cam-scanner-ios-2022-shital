@@ -88,9 +88,9 @@ export class LocalService {
     });
   }
 
-  saveDigitalSign(data, filenm, cb) {
+  saveDigitalSign(data, ext, cb) {
     const fileTransfer: FileTransferObject = this.transfer.create();
-    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/sign/'+filenm;
+    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/sign/'+new Date().getTime()+'.'+ext;
 
       fileTransfer.download(data, fileURL).then((entry) => {
          cb();
