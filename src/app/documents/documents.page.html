@@ -9,10 +9,10 @@
 
 <ion-content>
   <ion-grid class="recent-doc">   
-    <ion-row>
+    <ion-row *ngIf="recentDocs.length">
       <ion-col size="12">
         <ion-list>
-          <ion-item *ngFor="let item of [1,2,3]">
+          <ion-item *ngFor="let item of recentDocs">
             <ion-avatar slot="start">
               <img src="assets/pdf.png" style="border-radius: 0;" />
             </ion-avatar>

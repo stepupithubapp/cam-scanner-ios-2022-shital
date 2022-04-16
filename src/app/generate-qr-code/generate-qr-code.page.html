@@ -6,7 +6,7 @@
         <ion-title>
             Generate QRCode
         </ion-title>
-        <div (click)="createQr()" class="ion-padding" slot="end" *ngIf="qrcodeVal">
+        <div (click)="createQr()" class="ion-padding" slot="end" *ngIf="qrcodeVal" style="padding: 0 15px;">
             Save
         </div>
     </ion-toolbar>
@@ -31,7 +31,7 @@
             <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '1'">
                 <ion-card>
                   <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
-                    <ion-card-title style="color: #fff;">Text</ion-card-title>
+                    <ion-card-title style="color: #fff; font-size: 18px;">Text</ion-card-title>
                   </ion-card-header>
 
                   <ion-card-content>
@@ -47,7 +47,7 @@
             <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '2'">
                 <ion-card>
                   <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
-                    <ion-card-title style="color: #fff;">URL</ion-card-title>
+                    <ion-card-title style="color: #fff; font-size: 18px;">URL</ion-card-title>
                   </ion-card-header>
 
                   <ion-card-content>
@@ -63,7 +63,7 @@
             <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '3'">
                 <ion-card>
                   <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
-                    <ion-card-title style="color: #fff;">Contact</ion-card-title>
+                    <ion-card-title style="color: #fff; font-size: 18px;">Contact</ion-card-title>
                   </ion-card-header>
                   <ion-card-content>
                     <ion-item>
@@ -102,7 +102,7 @@
             <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '4'">
                 <ion-card>
                   <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
-                    <ion-card-title style="color: #fff;">Phone</ion-card-title>
+                    <ion-card-title style="color: #fff; font-size: 18px;">Phone</ion-card-title>
                   </ion-card-header>
 
                   <ion-card-content>
@@ -118,7 +118,7 @@
             <ion-col class="ion-no-padding" size="12" *ngIf="qrcodeType == '5'">
                 <ion-card>
                   <ion-card-header style="background-color: #1e2939;padding: 4px 10px;">
-                    <ion-card-title style="color: #fff;">SMS</ion-card-title>
+                    <ion-card-title style="color: #fff; font-size: 18px;">SMS</ion-card-title>
                   </ion-card-header>
 
                   <ion-card-content>
@@ -138,11 +138,11 @@
                 </ion-card>
             </ion-col>
 
-            <ion-col class="ion-no-padding ion-text-center" size="12">
+           <!--  <ion-col class="ion-no-padding ion-text-center" size="12">
                 <ion-button (click)="loadQrCode()">
                     Load QR
                 </ion-button>
-            </ion-col>
+            </ion-col> -->
 
             <ion-col class="ion-no-padding ion-text-center qr-img-block" size="12" *ngIf="qrcodeVal" style="margin-top: 50px;">
                 <ngx-qrcode 
@@ -155,3 +155,9 @@
         </ion-row>
     </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button color="light" expand="block" fill="outline" (click)="loadQrCode()">Load QR</ion-button>
+  </ion-toolbar>
+</ion-footer>

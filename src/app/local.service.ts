@@ -69,6 +69,14 @@ export class LocalService {
     }).catch(() => {});
   }
 
+  // Sorting
+  sortData = (array, key) => {
+    return array.sort((a, b) => {
+        let x = a[key];
+        let y = b[key];
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    });
+  }
 
 
 
@@ -80,7 +88,7 @@ export class LocalService {
 
   saveQrCode(data, cb) {
     const fileTransfer: FileTransferObject = this.transfer.create();
-    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/qr-code/'+new Date().getTime()+'.png';
+    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/'+new Date().getTime()+'.png';
 
       fileTransfer.download(data, fileURL).then((entry) => {
          cb();
@@ -90,7 +98,7 @@ export class LocalService {
 
   saveDigitalSign(data, filenm, cb) {
     const fileTransfer: FileTransferObject = this.transfer.create();
-    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/sign/'+filenm;
+    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/'+filenm;
 
       fileTransfer.download(data, fileURL).then((entry) => {
          cb();
@@ -101,7 +109,7 @@ export class LocalService {
   saveImageToPdf(data, filenm, cb) {
     let filname = filenm ? filenm : new Date().getTime()+'.pdf';
     const fileTransfer: FileTransferObject = this.transfer.create();
-    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/pdf-maker/'+filname;
+    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/'+filname;
 
       fileTransfer.download(data, fileURL).then((entry) => {
          cb();
@@ -112,7 +120,7 @@ export class LocalService {
   saveIdcard(data, filenm, cb) {
     let filname = filenm ? filenm : new Date().getTime()+'.jpg';
     const fileTransfer: FileTransferObject = this.transfer.create();
-    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/idcard/'+filname;
+    const fileURL = this.file.dataDirectory+'/mb-cam-scanner/'+filname;
 
       fileTransfer.download(data, fileURL).then((entry) => {
          cb();

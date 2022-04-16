@@ -15,7 +15,6 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 import { AdvertisementService } from './advertisement.service';
 import { LocalService } from './local.service';
@@ -26,7 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, NgxQRCodeModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
   HttpClient,
   DocumentScanner,

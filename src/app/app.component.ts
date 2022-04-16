@@ -53,12 +53,12 @@ export class AppComponent {
           this.file.createDir(this.file.dataDirectory+'/mb-cam-scanner', dir,true).then((result) => {}).catch((err) => {});
         }
 
-        let dirList = ['idcard', 'sign', 'qr-code', 'pdf-maker'];
-        this.file.createDir(this.file.dataDirectory,'mb-cam-scanner',true).then((result) => {
-          for (let i in dirList) {
-            createAllDir(dirList[i]);
-          }
-        }).catch((err) => {});
+        // let dirList = ['idcard', 'sign', 'qr-code', 'pdf-maker'];
+        // this.file.createDir(this.file.dataDirectory,'mb-cam-scanner',true).then((result) => {
+        //   for (let i in dirList) {
+        //     createAllDir(dirList[i]);
+        //   }
+        // }).catch((err) => {});
       } catch(err){}
 
       if (this.network.type == 'none') {
