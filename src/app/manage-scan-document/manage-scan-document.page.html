@@ -1,9 +1,54 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>manage-scan-document</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>My Documents</ion-title>
   </ion-toolbar>
+  
+  <ion-searchbar *ngIf="!isDocumentGetting && tempDocuments.length" [(ngModel)]="searchTerm"
+    (ionChange)="searchFilter(searchTerm)" (ionClear)="onClearSearch()" class="search-bar"></ion-searchbar>
 </ion-header>
 
 <ion-content>
+   <ion-list *ngIf="!isDocumentGetting && myDocs.length">
+      <ion-item *ngFor="let row of myDocs" (click)="showActionBox(row)">
+        <ion-avatar slot="start">
+          <ion-img [src]="row.image" *ngIf="row.ext == 'jpg'" style="max-width: 100%;" style="border-radius: 0;"></ion-img>
+          <img *ngIf="row.ext == 'pdf'" src="assets/pdf.png" style="border-radius: 0;">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{row.name}}</h2>
+          <p>{{row.date | date:'medium'}}</p>
+        </ion-label>
+        <ion-icon name="ellipsis-horizontal-outline" slot="end"></ion-icon>
+      </ion-item>
+    </ion-list>
 
+    <div class="ion-text-center" *ngIf="!isDocumentGetting && !myDocs.length" style="margin-top: 40%;">
+      <h6>No Document Found</h6>
+    </div>
+
+    <div class="ion-text-center" *ngIf="isDocumentGetting" style="margin-top: 40%;">
+        <ion-spinner name="circles"></ion-spinner>
+    </div>
 </ion-content>
+
+
+<ion-footer *ngIf="tempDocuments.length && !isDocumentGetting">
+    <ion-toolbar color="primary">
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="4" (click)="filterDocumentsList(0)">
+                  <span [ngClass]="{'active': filterKey == 0}" class="filter-document">ALL</span>
+                </ion-col>
+                <ion-col size="4" (click)="filterDocumentsList(2)">
+                  <span [ngClass]="{'active': filterKey == 2}" class="filter-document">PDF</span>
+                </ion-col>
+                <ion-col size="4" (click)="filterDocumentsList(1)">
+                  <span [ngClass]="{'active': filterKey == 1}" class="filter-document">IMAGES</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

@@ -1,12 +1,76 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
     <ion-title>Image To PDF</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row *ngIf="sprovider.scanList.length" style="margin-bottom: 50px;">
+      <ion-col class="doc-list ion-text-center" size="6" *ngFor="let docRow of sprovider.scanList; let index=index">
+          <ion-card style="margin: 0;">
+            <ion-card-content class="doc-ni-body">
+              <img src="{{docRow}}">
+            </ion-card-content>
+            <ion-card-header class="ion-no-padding">
+              <ion-grid no-padding class="action-footer">
+                  <ion-row class="ion-text-center">
+                      <ion-col (click)="swipeImagePrev(index)">
+                          <ion-icon name="chevron-back-outline"></ion-icon>
+                      </ion-col>
+                      <ion-col (click)="removeImage(index)">
+                          <ion-icon name="trash-outline" color="danger"></ion-icon>
+                      </ion-col>
+                      <ion-col (click)="replaceImage(index)">
+                          <ion-icon name="repeat-outline"></ion-icon>
+                      </ion-col>
+                      <ion-col (click)="cropImage(index)">
+                          <ion-icon name="crop-outline"></ion-icon>
+                      </ion-col>
+                      <ion-col (click)="swipeImageNext(index)">
+                          <ion-icon name="chevron-forward-outline"></ion-icon>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+            </ion-card-header>
+          </ion-card>
+      </ion-col>
+  </ion-row>
 
+  <div *ngIf="!sprovider.scanList.length" class="ion-text-center" style="margin-top: 50%;">
+    <h4>No Any Images selected.</h4>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-left: 11px;" (click)="selectFile(1)">
+    <ion-fab-button style="margin-bottom: -35px;--background: white;">
+      <ion-icon name="camera-outline" style="font-size: 30px;" color="primary"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-left: -65px;" (click)="selectFile(2)">
+    <ion-fab-button style="margin-bottom: -35px;--background: white;">
+      <ion-icon name="image-outline" style="font-size: 30px;" color="primary"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+
+<ion-footer color="primary">
+    <ion-tabs style="display: contents;">
+    <ion-tab-bar slot="bottom" color="primary">
+      <ion-tab-button (click)="clearAllFiles()">
+        <ion-icon name="trash"></ion-icon>
+        <ion-label>Remove</ion-label>
+      </ion-tab-button>
+      
+      <ion-tab-button></ion-tab-button>
+
+      <ion-tab-button (click)="saveExportFiles()">
+        <ion-icon name="document-outline"></ion-icon>
+        <ion-label>Save</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-footer> 

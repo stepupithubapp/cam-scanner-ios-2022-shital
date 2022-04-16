@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import SignaturePad from 'signature_pad';
+import { LocalService } from '../local.service';
 
 @Component({
   selector: 'app-digital-sign',
@@ -11,7 +12,7 @@ export class DigitalSignPage implements OnInit {
   @ViewChild('canvas', { static: true }) signaturePadElement;
   signaturePad: any;
 
-  constructor() {}
+  constructor(public local: LocalService,) {}
 
   ngOnInit() {
 
@@ -21,6 +22,7 @@ export class DigitalSignPage implements OnInit {
     this.signaturePad = new SignaturePad(this.signaturePadElement.nativeElement);
   }
 
+  // Change pad color
   changeColorButton(event) {
     var r = Math.round(Math.random() * 255);
     var g = Math.round(Math.random() * 255);
@@ -30,10 +32,12 @@ export class DigitalSignPage implements OnInit {
     this.signaturePad.penColor = color;
   };
 
+  // Clear sign pad
   clearButton(event) {
     this.signaturePad.clear();
   }
 
+  // Undo sign
   undoButton(event) {
     var data = this.signaturePad.toData();
 
@@ -43,29 +47,17 @@ export class DigitalSignPage implements OnInit {
     }
   }
 
+  // Save sign
   saveSign(event) {
     if (this.signaturePad.isEmpty()) {
-      alert("Please provide a signature first.");
+      this.toast.show("Please provide a signature first.", '2000', 'bottom').subscribe(toast => {});
     } else {
-      var dataURL = this.signaturePad.toDataURL();
-      // download(dataURL, "signature.png");
+
+      this.local.saveDigitalSign(this.signaturePad.toDataURL(), event, ()=>{
+        this.toast.show("Sign Saved Successfully.", '2000', 'bottom').subscribe(toast => {});
+        this.clearButton();
+        this.router.navigate(['/folder']);
+      });
     }
   };
-
-// saveJPGButton.addEventListener("click", function (event) {
-//   if (signaturePad.isEmpty()) {
-//     alert("Please provide a signature first.");
-//   } else {
-//     var dataURL = signaturePad.toDataURL("image/jpeg");
-//     download(dataURL, "signature.jpg");
-//   }
-// });
-
-// saveSVGButton.addEventListener("click", function (event) {
-//   if (signaturePad.isEmpty()) {
-//     alert("Please provide a signature first.");
-//   } else {
-//     var dataURL = signaturePad.toDataURL('image/svg+xml');
-//     download(dataURL, "signature.svg");
-//   }
 }

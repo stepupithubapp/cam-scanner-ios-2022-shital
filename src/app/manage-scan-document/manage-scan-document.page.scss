@@ -1,0 +1,14 @@
+.filter-document {
+	padding: 10px 5px;
+    font-weight: 600;
+    font-family: monospace;
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
+
+.active {
+    border-bottom: 2px solid black;
+}

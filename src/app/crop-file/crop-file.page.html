@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>Crop Image</ion-title>
+    <ion-icon name="checkmark-done-outline" slot="end" class="save-icon" (click)="saveCrop()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center" style="max-height: calc(100vh - 60px);">
+    <img id="crop-image" src="{{cropImg}}">
+  </div>
+</ion-content>
